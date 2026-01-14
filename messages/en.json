@@ -1,5 +1,49 @@
 {
+  "navbar": {
+    "home": "Home",
+    "quizzes": "Quizzes",
+    "quick-tools": "Quick Tools",
+    "language": "Language"
+  },
   "Home": {
-    "title": "Learn Democracy!"
+    "title": "Learn Democracy!",
+    "label": "To Vote Better",
+    "subtitle": "in 5 Minutes!",
+    "description": "Take Small quiz. Earn Certificate. Vote smart. Your voice matters in building a better tomorrow.",
+    "quiz": "Start the Democracy Quiz",
+    "learnPractice": "Learn & Practice",
+    "learnPracticeDescription": "Take interactive quizzes to test your knowledge about democracy, voting rights, and civic responsibilities.",
+    "exploreQuizzes": "Explore Quizzes",
+    "earnCertificates": "Earn Certificates",
+    "earnCertificatesDescription": "Score 50% or higher on our democracy quiz to earn a certificate of completion.",
+    "startQuiz": "Start Quiz"
+  },
+  "Quiz": {
+    "title": "Check your democracy score",
+    "description": "Answer 20 questions to test your knowledge about democracy and voting.",
+    "start": "Start Quiz",
+    "name": "Name",
+    "district": "District",
+    "enterName": "Enter your name",
+    "enterDistrict": "Enter your district",
+    "question": "Question",
+    "of": "of",
+    "next": "Next",
+    "previous": "Previous",
+    "finish": "Finish",
+    "selectAnswer": "Please select an answer",
+    "results": "Quiz Results",
+    "score": "Score",
+    "percentage": "Percentage",
+    "passed": "Passed",
+    "failed": "Failed",
+    "downloadCertificate": "Download Certificate",
+    "learningMaterials": "Learning Materials",
+    "congratulations": "Congratulations!",
+    "betterLuck": "Better luck next time!",
+    "viewResults": "View Detailed Results",
+    "correctAnswer": "Correct Answer",
+    "yourAnswer": "Your Answer",
+    "explanation": "Explanation"
   }
 }

@@ -4,19 +4,31 @@ import type { Metadata } from "next";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
-import { Inter, Hind_Siliguri, Nunito } from "next/font/google";
+import {
+  Hind_Siliguri,
+  Fredoka,
+  Nunito,
+  Noto_Sans_Bengali,
+} from "next/font/google";
 
-// English font
+// Default body font
 const nunito = Nunito({
   subsets: ["latin"],
-  variable: "--font-english",
+  weight: ["400", "600", "700", "800"],
+  variable: "--font-body",
 });
 
-// Bengali font
-const hindSiliguri = Hind_Siliguri({
+// English locale font
+const fredoka = Fredoka({
+  subsets: ["latin"],
+  variable: "--font-locale",
+});
+
+// Bengali locale font
+const notoSansBengali = Noto_Sans_Bengali({
   weight: ["300", "400", "600", "700"],
   subsets: ["bengali"],
-  variable: "--font-bengali",
+  variable: "--font-locale",
 });
 
 export const metadata: Metadata = {
@@ -36,24 +48,19 @@ export default async function RootLayout({
     notFound();
   }
 
-  const fontClass = locale === "bn" ? hindSiliguri.variable : nunito.variable;
+  const localeFont = locale === "bn" ? notoSansBengali : fredoka;
+  const fontClasses = `${nunito.variable} ${localeFont.variable}`;
 
   return (
-    <html lang={locale} className={fontClass}>
-      <body
-        style={{
-          fontFamily:
-            locale === "bn" ? "var(--font-bengali)" : "var(--font-english)",
-        }}
-        className="bg-background-light text-gray-900 min-h-screen relative overflow-x-hidden selection:bg-accent selection:text-black"
-      >
+    <html lang={locale} className={fontClasses}>
+      <body className="bg-background-light text-gray-900 min-h-screen relative overflow-x-hidden selection:bg-accent selection:text-black">
         {/* Background grid */}
         <div className="fixed inset-0 grid-pattern pointer-events-none z-0 opacity-40" />
         <NextIntlClientProvider>
           <Navbar />
 
           {/* Page content */}
-          <main className="relative mt-24 z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <main className="relative mt-20 md:mt-24 z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
             {children}
           </main>
         </NextIntlClientProvider>
