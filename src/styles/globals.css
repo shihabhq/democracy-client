@@ -1,0 +1,34 @@
+/* ---------------- FONTS ---------------- */
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap");
+
+@import "tailwindcss";
+
+/* ---------------- THEME ---------------- */
+@theme {
+  --font-display: "Fredoka", sans-serif;
+  /* --font-body: "Nunito", sans-serif; */
+
+  --color-primary: #006a4e;
+  --color-secondary: #f42a41;
+  --color-accent: #ffcb05;
+
+  --color-background-light: #fffbeb;
+  --color-card-light: #ffffff;
+
+  --color-paper-pink: #ffd6e0;
+  --color-paper-blue: #c4e1ff;
+  --color-paper-green: #c6f6d5;
+
+  --shadow-retro: 4px 4px 0px 0px rgb(0 0 0);
+  --shadow-retro-hover: 2px 2px 0px 0px rgb(0 0 0);
+
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+}
+
+/* ---------------- UTILITIES ---------------- */
+.grid-pattern {
+  background-image: linear-gradient(#e5e7eb 1px, transparent 1px),
+    linear-gradient(90deg, #e5e7eb 1px, transparent 1px);
+  background-size: 40px 40px;
+}
