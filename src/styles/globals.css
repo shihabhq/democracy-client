@@ -1,13 +1,7 @@
-/* ---------------- FONTS ---------------- */
-@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap");
-
 @import "tailwindcss";
 
 /* ---------------- THEME ---------------- */
 @theme {
-  --font-display: "Fredoka", sans-serif;
-  /* --font-body: "Nunito", sans-serif; */
-
   --color-primary: #006a4e;
   --color-secondary: #f42a41;
   --color-accent: #ffcb05;
@@ -24,6 +18,11 @@
 
   --radius-xl: 1.5rem;
   --radius-2xl: 2rem;
+}
+
+/* ---------------- FONTS ---------------- */
+body {
+  font-family: var(--font-body);
 }
 
 /* ---------------- UTILITIES ---------------- */
