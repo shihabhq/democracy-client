@@ -1,4 +1,17 @@
 {
+  "SEO": {
+    "siteName": "VoteKori",
+    "homeTitle": "VoteKori – Learn Democracy & Vote Smart in 5 Minutes",
+    "homeDescription": "Take a short democracy quiz, earn a certificate, and vote smart. Your voice matters in building a better Bangladesh.",
+    "quizzesTitle": "Democracy Quizzes | VoteKori",
+    "quizzesDescription": "Test your knowledge about democracy, voting rights, and civic responsibilities with our interactive quizzes.",
+    "quizTakeTitle": "Take the Democracy Quiz | VoteSmart BD",
+    "quizTakeDescription": "Answer 20 questions to test your democracy and voting knowledge. Earn a certificate when you pass.",
+    "quizResultsTitle": "Quiz Results | VoteSmart BD",
+    "quizResultsDescription": "View your democracy quiz results and download your certificate.",
+    "quickToolsTitle": "Quick Tools for Voters | VoteSmart BD",
+    "quickToolsDescription": "Polling station finder, voter registration check, and more tools for voters in Bangladesh."
+  },
   "navbar": {
     "home": "Home",
     "quizzes": "Quizzes",
