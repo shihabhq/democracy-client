@@ -4,12 +4,7 @@ import type { Metadata } from "next";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
-import {
-  Hind_Siliguri,
-  Fredoka,
-  Nunito,
-  Noto_Sans_Bengali,
-} from "next/font/google";
+import { Fredoka, Nunito, Noto_Sans_Bengali } from "next/font/google";
 
 // Default body font
 const nunito = Nunito({
@@ -31,9 +26,45 @@ const notoSansBengali = Noto_Sans_Bengali({
   variable: "--font-locale",
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://votekoir.com";
 export const metadata: Metadata = {
-  title: "VoteSmart BD",
-  description: "Democracy Practice Platform",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Vote Kori – Learn Democracy & Vote Smart",
+    template: "%s | Vote Kori",
+  },
+  description:
+    "Take a short democracy quiz, earn a certificate, and vote smart. Your voice matters in building a better Bangladesh.",
+  keywords: [
+    "democracy",
+    "voting",
+    "Bangladesh",
+    "civic education",
+    "vote smart",
+    "quiz",
+    "certificate",
+  ],
+  authors: [{ name: "Vote Kori" }],
+  openGraph: {
+    type: "website",
+    locale: "en_GB",
+    alternateLocale: "bn_BD",
+    siteName: "Vote Kori",
+    title: "Vote Kori – Learn Democracy & Vote Smart",
+    description:
+      "Take a short democracy quiz, earn a certificate, and vote smart. Your voice matters in building a better Bangladesh.",
+    url: "/",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Vote Kori – Learn Democracy & Vote Smart",
+    description:
+      "Take a short democracy quiz, earn a certificate, and vote smart.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default async function RootLayout({
