@@ -20,7 +20,7 @@ export default function TakeQuizPage() {
 
   const handleStart = async () => {
     if (!name.trim() || !district.trim()) {
-      setError("Please enter both name and district");
+      setError(t("enterNameAndDistrict"));
       return;
     }
     setError("");
@@ -29,7 +29,7 @@ export default function TakeQuizPage() {
       setQuestions(fetchedQuestions);
       setStep("quiz");
     } catch {
-      setError("Failed to load questions. Please try again.");
+      setError(t("failedToLoadQuestions"));
     }
   };
 
@@ -52,7 +52,7 @@ export default function TakeQuizPage() {
 
   const handleFinish = async () => {
     if (Object.keys(answers).length !== questions.length) {
-      setError("Please answer all questions");
+      setError(t("answerAllQuestions"));
       return;
     }
 
@@ -71,7 +71,7 @@ export default function TakeQuizPage() {
       setError(
         err instanceof Error
           ? err.message
-          : "Failed to submit quiz. Please try again."
+          : t("failedToSubmitQuiz")
       );
       setStep("quiz");
     }
@@ -140,7 +140,7 @@ export default function TakeQuizPage() {
       <div className="max-w-2xl mx-auto">
         <div className="bg-white border-2 border-black rounded-2xl shadow-retro p-12 text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-4 border-primary border-t-transparent mx-auto mb-4"></div>
-          <p className="text-lg font-medium">Submitting your quiz...</p>
+          <p className="text-lg font-medium">{t("submittingQuiz")}</p>
         </div>
       </div>
     );

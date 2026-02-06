@@ -44,6 +44,11 @@
     "viewResults": "বিস্তারিত ফলাফল দেখুন",
     "correctAnswer": "সঠিক উত্তর",
     "yourAnswer": "আপনার উত্তর",
-    "explanation": "ব্যাখ্যা"
+    "explanation": "ব্যাখ্যা",
+    "enterNameAndDistrict": "আপনার নাম ও জেলা লিখুন",
+    "failedToLoadQuestions": "প্রশ্ন লোড করতে ব্যর্থ",
+    "answerAllQuestions": "সমস্ত প্রশ্নের উত্তর দিন",
+    "failedToSubmitQuiz": "কুইজ জমা করতে ব্যর্থ",
+    "submittingQuiz": "কুইজ জমা করতে হচ্ছে..."
   }
 }
