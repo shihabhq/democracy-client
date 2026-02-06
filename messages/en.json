@@ -44,6 +44,11 @@
     "viewResults": "View Detailed Results",
     "correctAnswer": "Correct Answer",
     "yourAnswer": "Your Answer",
-    "explanation": "Explanation"
+    "explanation": "Explanation",
+    "enterNameAndDistrict": "Enter your name and district",
+    "failedToLoadQuestions": "Failed to load questions. Please try again.",
+    "answerAllQuestions": "Please answer all questions",
+    "failedToSubmitQuiz": "Failed to submit quiz. Please try again.",
+    "submittingQuiz": "Submitting your quiz..."
   }
 }

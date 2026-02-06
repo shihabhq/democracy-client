@@ -9,7 +9,15 @@ import { useState, useEffect } from "react";
 const Navbar = () => {
   const t = useTranslations("navbar");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
+
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 8);
+    onScroll(); // run once in case we're already scrolled
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const navLinks = [
     {
@@ -40,7 +48,11 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-6 z-50 w-full">
+      <nav
+        className={`fixed top-0 left-0 right-0 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-6 z-50 w-full transition-[background,backdrop-filter] duration-300 ${
+          isScrolled ? "bg-background-light/80 backdrop-blur-sm" : ""
+        }`}
+      >
         {/* Mobile: Logo and Language Toggle Row */}
         <div className="flex md:hidden items-center justify-between w-full mb-0">
           <div className="flex items-center gap-2">
@@ -52,7 +64,7 @@ const Navbar = () => {
               />
             </div>
             <h1 className="font-display font-bold text-lg tracking-tight">
-              VoteSmart BD
+              <Link href="/">VoteSmart BD</Link>
             </h1>
           </div>
 
@@ -91,7 +103,7 @@ const Navbar = () => {
 
         {/* Desktop: Original 3-column layout */}
         <div className="hidden md:flex justify-between items-center gap-4">
-          <div className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2">
             <div className="w-12 h-12 bg-primary rounded-full border-4 border-black flex items-center justify-center shadow-retro">
               <img
                 src="/navbar/how_to_vote.svg"
@@ -102,7 +114,7 @@ const Navbar = () => {
             <h1 className="font-display font-bold text-2xl tracking-tight">
               VoteSmart BD
             </h1>
-          </div>
+          </Link>
 
           <div className="flex flex-wrap justify-center gap-3 bg-white p-2 rounded-2xl border-2 border-black shadow-retro">
             {navLinks.map((item) => (
