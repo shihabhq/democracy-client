@@ -5,6 +5,7 @@ import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { Fredoka, Nunito, Noto_Sans_Bengali } from "next/font/google";
+import Footer from "@/components/Footer";
 
 // Default body font
 const nunito = Nunito({
@@ -26,7 +27,7 @@ const notoSansBengali = Noto_Sans_Bengali({
   variable: "--font-locale",
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://votekoir.com";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://votekori.cloud";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
@@ -84,9 +85,9 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} className={fontClasses}>
-      <body className="bg-background-light text-gray-900 min-h-screen relative overflow-x-hidden selection:bg-accent selection:text-black">
+      <body className=" text-gray-900 min-h-screen relative overflow-x-hidden selection:text-white selection:bg-primary">
         {/* Background grid */}
-        <div className="fixed inset-0 grid-pattern pointer-events-none z-0 opacity-40" />
+        <div className="fixed inset-0 pointer-events-none z-0 opacity-40" />
         <NextIntlClientProvider>
           <Navbar />
 
@@ -94,6 +95,8 @@ export default async function RootLayout({
           <main className="relative mt-20 md:mt-24 z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
             {children}
           </main>
+
+          <Footer />
         </NextIntlClientProvider>
       </body>
     </html>

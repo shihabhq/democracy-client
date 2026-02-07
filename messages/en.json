@@ -16,14 +16,15 @@
     "home": "Home",
     "quizzes": "Quizzes",
     "quick-tools": "Quick Tools",
+    "about": "About Us",
     "language": "Language"
   },
   "Home": {
-    "title": "Learn Democracy!",
+    "title": "Hey There!",
     "label": "To Vote Better",
-    "subtitle": "in 5 Minutes!",
-    "description": "Take Small quiz. Earn Certificate. Vote smart. Your voice matters in building a better tomorrow.",
-    "quiz": "Start the Democracy Quiz",
+    "subtitle": "Are you ready to vote?",
+    "description": "Take the 2 Minute Drill to Verify your voting knowledge and earn certificate.",
+    "quiz": "Start Quiz",
     "learnPractice": "Learn & Practice",
     "learnPracticeDescription": "Take interactive quizzes to test your knowledge about democracy, voting rights, and civic responsibilities.",
     "exploreQuizzes": "Explore Quizzes",
@@ -39,6 +40,10 @@
     "district": "District",
     "enterName": "Enter your name",
     "enterDistrict": "Enter your district",
+    "selectDistrict": "Select your district",
+    "ageGroup": "Age group",
+    "selectAgeGroup": "Select your age group",
+    "enterNameDistrictAge": "Enter your name, district and age group",
     "question": "Question",
     "of": "of",
     "next": "Next",
@@ -63,5 +68,21 @@
     "answerAllQuestions": "Please answer all questions",
     "failedToSubmitQuiz": "Failed to submit quiz. Please try again.",
     "submittingQuiz": "Submitting your quiz..."
+  },
+  "About": {
+    "title": "About Vote Kori",
+    "subtitle": "We help citizens learn democracy and vote with confidence.",
+    "missionTitle": "Our Mission",
+    "mission": "Vote Kori is a civic education platform for Bangladesh. We believe every voter should understand how democracy works, what their rights are, and how to cast an informed vote. Through short quizzes and certificates, we make learning about democracy simple and rewarding.",
+    "whatWeDoTitle": "What We Do",
+    "whatWeDo1": "Interactive democracy quizzes in Bengali and English",
+    "whatWeDo2": "Certificates for participants who pass the quiz",
+    "whatWeDo3": "Clear explanations so you learn as you go",
+    "valuesTitle": "Why It Matters",
+    "values1": "Informed voters strengthen democracy.",
+    "values2": "Your vote shapes the future of Bangladesh.",
+    "values3": "A few minutes of learning can change how you vote.",
+    "cta": "Ready to test your knowledge?",
+    "ctaButton": "Start the Quiz"
   }
 }

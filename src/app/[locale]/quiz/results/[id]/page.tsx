@@ -68,7 +68,7 @@ export default function QuizResultsPage() {
             {results.passed ? t("congratulations") : t("betterLuck")}
           </h1>
           <p className="text-lg text-gray-600">
-            {results.name} - {results.district}
+            {results.name} · {results.district} · {results.ageGroup}
           </p>
         </div>
 

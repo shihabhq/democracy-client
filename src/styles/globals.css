@@ -4,7 +4,7 @@
 @theme {
   --color-primary: #006a4e;
   --color-secondary: #f42a41;
-  --color-accent: #ffcb05;
+  --color-accent: #f42a41;
 
   --color-background-light: #fffbeb;
   --color-card-light: #ffffff;
@@ -30,4 +30,13 @@ body {
   background-image: linear-gradient(#e5e7eb 1px, transparent 1px),
     linear-gradient(90deg, #e5e7eb 1px, transparent 1px);
   background-size: 40px 40px;
+}
+
+/* Custom select dropdown - retro style */
+.select-retro {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23000' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1.25rem;
 }
