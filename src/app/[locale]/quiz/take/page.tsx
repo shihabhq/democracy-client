@@ -1,26 +1,32 @@
 "use client";
 
 import { useState } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { getQuizQuestions, submitQuizAttempt, Question } from "@/lib/api";
+import { BANGLADESH_DISTRICTS, AGE_GROUPS } from "@/lib/constants";
+import { DISTRICTS_BN } from "@/lib/districts-bn";
 
 type Step = "info" | "quiz" | "submitting";
 
 export default function TakeQuizPage() {
   const t = useTranslations("Quiz");
+  const locale = useLocale();
   const router = useRouter();
+  const districtLabel = (d: string) =>
+    locale === "bn" ? (DISTRICTS_BN[d] ?? d) : d;
   const [step, setStep] = useState<Step>("info");
   const [name, setName] = useState("");
   const [district, setDistrict] = useState("");
+  const [ageGroup, setAgeGroup] = useState("");
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<{ [key: string]: string }>({});
   const [error, setError] = useState("");
 
   const handleStart = async () => {
-    if (!name.trim() || !district.trim()) {
-      setError(t("enterNameAndDistrict"));
+    if (!name.trim() || !district || !ageGroup) {
+      setError(t("enterNameDistrictAge"));
       return;
     }
     setError("");
@@ -65,7 +71,7 @@ export default function TakeQuizPage() {
         optionId: answers[q.id],
       }));
 
-      const result = await submitQuizAttempt(name, district, answerArray);
+      const result = await submitQuizAttempt(name, district, ageGroup, answerArray);
       router.push(`/quiz/results/${result.id}`);
     } catch (err) {
       setError(
@@ -105,16 +111,43 @@ export default function TakeQuizPage() {
             </div>
 
             <div>
-              <label className="block font-display font-bold text-lg mb-2">
+              <label className="block font-display font-bold text-lg mb-2 text-gray-800">
                 {t("district")}
               </label>
-              <input
-                type="text"
-                value={district}
-                onChange={(e) => setDistrict(e.target.value)}
-                placeholder={t("enterDistrict")}
-                className="w-full px-4 py-3 border-2 border-black rounded-xl focus:outline-none focus:ring-2 focus:ring-primary"
-              />
+              <div className="relative">
+                <select
+                  value={district}
+                  onChange={(e) => setDistrict(e.target.value)}
+                  className="select-retro w-full pl-4 pr-12 py-3.5 border-2 border-black rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary bg-white cursor-pointer font-medium text-gray-900 hover:bg-gray-50 transition-colors"
+                >
+                  <option value="">{t("selectDistrict")}</option>
+                  {BANGLADESH_DISTRICTS.map((d) => (
+                    <option key={d} value={d}>
+                      {districtLabel(d)}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label className="block font-display font-bold text-lg mb-2 text-gray-800">
+                {t("ageGroup")}
+              </label>
+              <div className="relative">
+                <select
+                  value={ageGroup}
+                  onChange={(e) => setAgeGroup(e.target.value)}
+                  className="select-retro w-full pl-4 pr-12 py-3.5 border-2 border-black rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary bg-white cursor-pointer font-medium text-gray-900 hover:bg-gray-50 transition-colors"
+                >
+                  <option value="">{t("selectAgeGroup")}</option>
+                  {AGE_GROUPS.map((age) => (
+                    <option key={age} value={age}>
+                      {age}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
           </div>
 
@@ -126,7 +159,7 @@ export default function TakeQuizPage() {
 
           <button
             onClick={handleStart}
-            className="w-full px-6 py-4 bg-accent text-black font-display font-bold text-lg rounded-xl border-2 border-black shadow-retro hover:shadow-retro-hover hover:translate-x-1 hover:translate-y-1 active:shadow-retro-hover active:translate-x-1 active:translate-y-1 transition-all"
+            className="w-full px-6 py-4 bg-accent text-white font-display font-bold text-lg rounded-xl border-2 border-black shadow-retro hover:shadow-retro-hover hover:translate-x-1 hover:translate-y-1 active:shadow-retro-hover active:translate-x-1 active:translate-y-1 transition-all"
           >
             {t("start")}
           </button>
@@ -217,7 +250,7 @@ export default function TakeQuizPage() {
           {currentQuestionIndex === questions.length - 1 ? (
             <button
               onClick={handleFinish}
-              className="px-6 py-3 bg-accent text-black font-display font-bold rounded-xl border-2 border-black shadow-retro hover:shadow-retro-hover hover:translate-x-1 hover:translate-y-1 active:shadow-retro-hover active:translate-x-1 active:translate-y-1 transition-all"
+              className="px-6 py-3 bg-accent text-white  font-display font-bold rounded-xl border-2 border-black shadow-retro hover:shadow-retro-hover hover:translate-x-1 hover:translate-y-1 active:shadow-retro-hover active:translate-x-1 active:translate-y-1 transition-all"
             >
               {t("finish")}
             </button>

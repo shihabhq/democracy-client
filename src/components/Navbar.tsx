@@ -28,9 +28,13 @@ const Navbar = () => {
       lable: t("quizzes"),
       href: "/quizzes",
     },
+    // {
+    //   lable: t("quick-tools"),
+    //   href: "/quick-tools",
+    // },
     {
-      lable: t("quick-tools"),
-      href: "/quick-tools",
+      lable: t("about"),
+      href: "/about",
     },
   ];
 
@@ -56,15 +60,18 @@ const Navbar = () => {
         {/* Mobile: Logo and Language Toggle Row */}
         <div className="flex md:hidden items-center justify-between w-full mb-0">
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-primary rounded-full border-4 border-black flex items-center justify-center shadow-retro">
+            {/* <div className="w-10 h-10 bg-primary rounded-full border-4 border-black flex items-center justify-center shadow-retro">
               <img
                 src="/navbar/how_to_vote.svg"
                 alt="VoteSmart BD"
                 className="w-6 h-6 object-contain"
               />
-            </div>
-            <h1 className="font-display font-bold text-lg tracking-tight">
-              <Link href="/">VoteSmart BD</Link>
+            </div> */}
+            <h1 className="font-display font-sans text-center text-primary font-bold text-lg tracking-tight">
+              <Link href="/">
+                MY FIRST <br />{" "}
+                <span className="text-secondary">BALLOT</span>{" "}
+              </Link>
             </h1>
           </div>
 
@@ -104,15 +111,9 @@ const Navbar = () => {
         {/* Desktop: Original 3-column layout */}
         <div className="hidden md:flex justify-between items-center gap-4">
           <Link href="/" className="flex items-center gap-2">
-            <div className="w-12 h-12 bg-primary rounded-full border-4 border-black flex items-center justify-center shadow-retro">
-              <img
-                src="/navbar/how_to_vote.svg"
-                alt="VoteSmart BD"
-                className="w-8 h-8 object-contain"
-              />
-            </div>
-            <h1 className="font-display font-bold text-2xl tracking-tight">
-              VoteSmart BD
+            <h1 className="font-display font-sans text-primary font-bold text-center text-2xl tracking-tight">
+              MY FIRST <br />
+              <span className="text-secondary">BALLOT</span>
             </h1>
           </Link>
 
@@ -121,8 +122,8 @@ const Navbar = () => {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`px-4 py-2 rounded-xl font-bold font-display text-base hover:bg-gray-800 hover:text-white transition-colors ${
-                  pathname === item.href ? "bg-gray-900 text-white" : ""
+                className={`px-4 py-2 rounded-xl font-bold font-display text-base hover:bg-primary hover:text-white transition-colors ${
+                  pathname === item.href ? "bg-primary text-white" : ""
                 }`}
               >
                 {item.lable}

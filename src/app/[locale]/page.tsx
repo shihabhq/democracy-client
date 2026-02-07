@@ -5,14 +5,14 @@ export default function HomePage() {
   const t = useTranslations("Home");
   return (
     <>
-      <header className="text-center mb-16 relative">
-        <div className="inline-block bg-accent px-4 py-1 rounded-full border-2 border-black mb-6 -rotate-2 shadow-retro">
+      <header className="text-center mb-8 relative">
+        {/* <div className="inline-block bg-accent px-4 py-1 rounded-full border-2 border-black mb-6 -rotate-2 shadow-retro">
           <span className="font-display font-bold text-sm uppercase">
             {t("label")}
           </span>
-        </div>
+        </div> */}
 
-        <h2 className="font-display font-black text-4xl sm:text-5xl md:text-7xl mb-4 leading-tight">
+        <h2 className="font-display font-black text-3xl sm:text-4xl md:text-5xl leading-tight">
           {t("title")}
           <br />
           <span className="text-primary relative inline-block">
@@ -32,51 +32,26 @@ export default function HomePage() {
           </span>
         </h2>
 
-        <p className="text-lg sm:text-xl md:text-2xl text-gray-600 font-medium max-w-2xl mx-auto mb-10">
-          {t("description")}
-        </p>
+        <div className="max-w-2xl mx-auto">
+          <img
+            src="https://ik.imagekit.io/bua2b1x6j/kashful/ballot.png"
+            alt=""
+          />
+        </div>
 
         <div className="flex flex-col sm:flex-row justify-center gap-6">
           <Link href="/quiz/take">
             <HeroButton
               label={t("quiz")}
               icon="quiz"
-              bg="bg-accent text-black"
+              bg="bg-red-600 text-white"
             />
           </Link>
         </div>
       </header>
-
-      {/* Additional Sections */}
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-6 mb-12">
-        <div className="bg-white border-2 border-black rounded-2xl shadow-retro p-6">
-          <h3 className="font-display font-bold text-2xl mb-3">
-            {t("learnPractice")}
-          </h3>
-          <p className="text-gray-600 mb-4">{t("learnPracticeDescription")}</p>
-          <Link
-            href="/quizzes"
-            className="inline-block px-4 py-2 bg-primary text-white font-display font-bold rounded-xl border-2 border-primary shadow-retro hover:shadow-retro-hover hover:translate-x-1 hover:translate-y-1 active:shadow-retro-hover active:translate-x-1 active:translate-y-1 transition-all"
-          >
-            {t("exploreQuizzes")}
-          </Link>
-        </div>
-
-        <div className="bg-white border-2 border-black rounded-2xl shadow-retro p-6">
-          <h3 className="font-display font-bold text-2xl mb-3">
-            {t("earnCertificates")}
-          </h3>
-          <p className="text-gray-600 mb-4">
-            {t("earnCertificatesDescription")}
-          </p>
-          <Link
-            href="/quiz/take"
-            className="inline-block px-4 py-2 bg-accent text-black font-display font-bold rounded-xl border-2 border-black shadow-retro hover:shadow-retro-hover hover:translate-x-1 hover:translate-y-1 active:shadow-retro-hover active:translate-x-1 active:translate-y-1 transition-all"
-          >
-            {t("startQuiz")}
-          </Link>
-        </div>
-      </div>
+      <p className="text-lg text-center sm:text-xl md:text-2xl text-primary font-bold max-w-xl mx-auto">
+        {t("description")}
+      </p>
     </>
   );
 }
@@ -91,7 +66,7 @@ function HeroButton({
 }) {
   return (
     <button
-      className={`group px-6 sm:px-8 cursor-pointer py-3 sm:py-4 ${bg} font-display font-bold text-lg sm:text-xl rounded-2xl border-2 border-black shadow-retro hover:shadow-retro-hover hover:translate-x-1 hover:translate-y-1 active:shadow-retro-hover active:translate-x-1 active:translate-y-1 transition-all`}
+      className={`group px-6 sm:px-8 cursor-pointer py-3 ${bg} font-display font-bold text-lg sm:text-xl rounded-2xl border-2 border-black shadow-retro hover:shadow-retro-hover hover:translate-x-1 hover:translate-y-1 active:shadow-retro-hover active:translate-x-1 active:translate-y-1 transition-all`}
     >
       <span className="flex items-center justify-center gap-2">
         {label}

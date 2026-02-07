@@ -20,6 +20,7 @@ export interface QuizResult {
   id: string;
   name: string;
   district: string;
+  ageGroup: string;
   score: number;
   percentage: number;
   passed: boolean;
@@ -54,6 +55,7 @@ export async function getQuizQuestions(): Promise<Question[]> {
 export async function submitQuizAttempt(
   name: string,
   district: string,
+  ageGroup: string,
   answers: { questionId: string; optionId: string }[]
 ): Promise<QuizAttemptResponse> {
   const response = await fetch(`${API_URL}/quiz/attempt`, {
@@ -61,7 +63,7 @@ export async function submitQuizAttempt(
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ name, district, answers }),
+    body: JSON.stringify({ name, district, ageGroup, answers }),
   });
   if (!response.ok) {
     const errorData = await response.json().catch(() => ({}));
