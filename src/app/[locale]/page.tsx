@@ -32,9 +32,9 @@ export default function HomePage() {
           </span>
         </h2>
 
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-3xl py-6 md:py-2 mx-auto">
           <img
-            src="https://ik.imagekit.io/bua2b1x6j/kashful/ballot.png"
+            src="https://ik.imagekit.io/bua2b1x6j/kashful/ballot-box.png"
             alt=""
           />
         </div>
@@ -66,7 +66,7 @@ function HeroButton({
 }) {
   return (
     <button
-      className={`group px-6 sm:px-8 cursor-pointer py-3 ${bg} font-display font-bold text-lg sm:text-xl rounded-2xl border-2 border-black shadow-retro hover:shadow-retro-hover hover:translate-x-1 hover:translate-y-1 active:shadow-retro-hover active:translate-x-1 active:translate-y-1 transition-all`}
+      className={`group px-6 sm:px-8 cursor-pointer py-3 ${bg} font-display font-bold text-xl sm:text-2xl rounded-2xl border-2 border-black shadow-retro hover:shadow-retro-hover hover:translate-x-1 hover:translate-y-1 active:shadow-retro-hover active:translate-x-1 active:translate-y-1 transition-all`}
     >
       <span className="flex items-center justify-center gap-2">
         {label}

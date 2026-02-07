@@ -90,7 +90,7 @@ export default function QuizResultsPage() {
         {results.passed ? (
           <button
             onClick={handleDownloadCertificate}
-            className="w-full px-6 py-4 bg-accent text-black font-display font-bold text-lg rounded-xl border-2 border-black shadow-retro hover:shadow-retro-hover hover:translate-x-1 hover:translate-y-1 active:shadow-retro-hover active:translate-x-1 active:translate-y-1 transition-all"
+            className="w-full px-6 py-4 bg-accent text-white font-display font-bold text-lg rounded-xl border-2 border-black shadow-retro hover:shadow-retro-hover hover:translate-x-1 hover:translate-y-1 active:shadow-retro-hover active:translate-x-1 active:translate-y-1 transition-all"
           >
             {t("downloadCertificate")}
           </button>
