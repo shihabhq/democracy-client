@@ -160,12 +160,17 @@ export default function QuizResultsPage() {
               )}
             </div>
 
-            <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-4">
-              <div className="text-sm font-medium text-blue-900 mb-1">
-                {t("explanation")}:
+
+            {result.question.explanation?.trim() && (
+              <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-4">
+                <div className="text-sm font-medium text-blue-900 mb-1">
+                  {t("explanation")}:
+                </div>
+                <div className="text-blue-800">
+                  {result.question.explanation}
+                </div>
               </div>
-              <div className="text-blue-800">{result.question.explanation}</div>
-            </div>
+            )}
           </div>
         ))}
       </div>

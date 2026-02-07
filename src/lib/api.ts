@@ -29,7 +29,7 @@ export interface QuizResult {
     question: {
       id: string;
       text: string;
-      explanation: string;
+      explanation: string | null;
     };
     selectedOption: {
       id: string;
