@@ -18,7 +18,7 @@ export default function Footer() {
           <img
             src="https://ik.imagekit.io/bua2b1x6j/kashful/artivism.png?updatedAt=1770410372066"
             alt="Artivism"
-            className="max-w-lg w-2/3 mx-auto h-auto object-contain"
+            className=" w-2/5 sm:max-w-sm mx-auto h-auto object-contain"
           />
         </div>
       </div>
