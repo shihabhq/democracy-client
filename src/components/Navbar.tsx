@@ -69,8 +69,11 @@ const Navbar = () => {
             </div> */}
             <h1 className="font-display font-sans text-center text-primary font-bold text-lg tracking-tight">
               <Link href="/">
-                MY FIRST <br />{" "}
-                <span className="text-secondary">BALLOT</span>{" "}
+                <img
+                  src="/navbar/my-ballot.png"
+                  alt="VoteSmart BD"
+                  className="w-16 object-contain"
+                />
               </Link>
             </h1>
           </div>
@@ -111,10 +114,11 @@ const Navbar = () => {
         {/* Desktop: Original 3-column layout */}
         <div className="hidden md:flex justify-between items-center gap-4">
           <Link href="/" className="flex items-center gap-2">
-            <h1 className="font-display font-sans text-primary font-bold text-center text-2xl tracking-tight">
-              MY FIRST <br />
-              <span className="text-secondary">BALLOT</span>
-            </h1>
+            <img
+              src="/navbar/my-ballot.png"
+              alt="VoteSmart BD"
+              className=" w-20 object-contain"
+            />
           </Link>
 
           <div className="flex flex-wrap justify-center gap-3 bg-white p-2 rounded-2xl border-2 border-black shadow-retro">
