@@ -57,13 +57,13 @@ export default function LanguageToggle() {
       <button
         onClick={() => setIsOpen(!isOpen)}
         disabled={isPending}
-        className="flex items-center gap-2 px-2 py-1 bg-white border-2 border-black rounded-xl font-bold font-display shadow-retro hover:shadow-retro-hover hover:translate-x-0.5 hover:translate-y-0.5 active:shadow-retro-hover active:translate-x-0.5 active:translate-y-0.5 transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:active:translate-x-0 disabled:active:translate-y-0"
+        className="flex items-center gap-1 px-2 py-1 bg-white border-2 border-black rounded-xl font-bold font-display shadow-retro hover:shadow-retro-hover hover:translate-x-0.5 hover:translate-y-0.5 active:shadow-retro-hover active:translate-x-0.5 active:translate-y-0.5 transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:active:translate-x-0 disabled:active:translate-y-0"
       >
         <span className="fill-primary">
           <img
             src="/navbar/language.svg"
             alt="Language"
-            className="w-8 h-8 text-primary object-contain"
+            className="sm:w-8 sm:h-8 w-6 h-6 text-primary object-contain"
           />
         </span>
         <span className="text-lg">{currentLanguage?.name || "English"}</span>

@@ -30,6 +30,11 @@ const notoSansBengali = Noto_Sans_Bengali({
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://votekori.cloud";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
   title: {
     default: "Vote Kori – Learn Democracy & Vote Smart",
     template: "%s | Vote Kori",

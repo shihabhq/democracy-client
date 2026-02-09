@@ -68,3 +68,14 @@ export const BANGLADESH_DISTRICTS = [
 
 export const AGE_GROUPS = ["18-25", "26-40", "41-50", "50+"] as const;
 export type AgeGroup = (typeof AGE_GROUPS)[number];
+
+export const GENDERS = ["Male", "Female", "Other", "Prefer not to say"] as const;
+export type Gender = (typeof GENDERS)[number];
+
+/** Translation keys for each gender (Quiz.genderMale, etc.) */
+export const GENDER_LABEL_KEYS: Record<Gender, string> = {
+  Male: "genderMale",
+  Female: "genderFemale",
+  Other: "genderOther",
+  "Prefer not to say": "genderPreferNotToSay",
+};

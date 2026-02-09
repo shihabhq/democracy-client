@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
 import { getQuizResults, getCertificateUrl, QuizResult } from "@/lib/api";
+import { GENDER_LABEL_KEYS } from "@/lib/constants";
+import type { Gender } from "@/lib/constants";
 import Link from "next/link";
 
 export default function QuizResultsPage() {
@@ -13,13 +15,15 @@ export default function QuizResultsPage() {
   const [results, setResults] = useState<QuizResult | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [downloadError, setDownloadError] = useState<string | null>(null);
+  const [downloading, setDownloading] = useState(false);
 
   useEffect(() => {
     async function fetchResults() {
       try {
         const data = await getQuizResults(attemptId);
         setResults(data);
-      } catch (err) {
+      } catch {
         setError("Failed to load results");
       } finally {
         setLoading(false);
@@ -28,8 +32,32 @@ export default function QuizResultsPage() {
     fetchResults();
   }, [attemptId]);
 
-  const handleDownloadCertificate = () => {
-    window.open(getCertificateUrl(attemptId), "_blank");
+  const handleDownloadCertificate = async () => {
+    setDownloadError(null);
+    setDownloading(true);
+    try {
+      const url = getCertificateUrl(attemptId);
+      const res = await fetch(url);
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        const message = data?.error || data?.details || res.statusText;
+        setDownloadError(message);
+        return;
+      }
+      const blob = await res.blob();
+      const blobUrl = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = blobUrl;
+      a.download = "certificate.pdf";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(blobUrl);
+    } catch (err) {
+      setDownloadError(err instanceof Error ? err.message : "Download failed");
+    } finally {
+      setDownloading(false);
+    }
   };
 
   if (loading) {
@@ -69,6 +97,9 @@ export default function QuizResultsPage() {
           </h1>
           <p className="text-lg text-gray-600">
             {results.name} · {results.district} · {results.ageGroup}
+              {results.gender
+                ? ` · ${GENDER_LABEL_KEYS[results.gender as Gender] ? t(GENDER_LABEL_KEYS[results.gender as Gender]) : results.gender}`
+                : ""}
           </p>
         </div>
 
@@ -87,12 +118,19 @@ export default function QuizResultsPage() {
           </div>
         </div>
 
+        {downloadError && (
+          <div className="mb-4 p-3 bg-red-100 border-2 border-red-500 rounded-xl text-red-700 text-sm">
+            {downloadError}
+          </div>
+        )}
         {results.passed ? (
           <button
+            type="button"
             onClick={handleDownloadCertificate}
-            className="w-full px-6 py-4 bg-accent text-white font-display font-bold text-lg rounded-xl border-2 border-black shadow-retro hover:shadow-retro-hover hover:translate-x-1 hover:translate-y-1 active:shadow-retro-hover active:translate-x-1 active:translate-y-1 transition-all"
+            disabled={downloading}
+            className="w-full px-6 py-4 bg-accent text-white font-display font-bold text-lg rounded-xl border-2 border-black shadow-retro hover:shadow-retro-hover hover:translate-x-1 hover:translate-y-1 active:shadow-retro-hover active:translate-x-1 active:translate-y-1 transition-all disabled:opacity-70 disabled:cursor-not-allowed"
           >
-            {t("downloadCertificate")}
+            {downloading ? t("downloadingCertificate") : t("downloadCertificate")}
           </button>
         ) : (
           <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-4">

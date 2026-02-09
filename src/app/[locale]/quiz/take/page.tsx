@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { getQuizQuestions, submitQuizAttempt, Question } from "@/lib/api";
-import { BANGLADESH_DISTRICTS, AGE_GROUPS } from "@/lib/constants";
+import { BANGLADESH_DISTRICTS, AGE_GROUPS, GENDERS, GENDER_LABEL_KEYS } from "@/lib/constants";
 import { DISTRICTS_BN } from "@/lib/districts-bn";
 
 type Step = "info" | "quiz" | "submitting";
@@ -19,14 +19,15 @@ export default function TakeQuizPage() {
   const [name, setName] = useState("");
   const [district, setDistrict] = useState("");
   const [ageGroup, setAgeGroup] = useState("");
+  const [gender, setGender] = useState("");
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<{ [key: string]: string }>({});
   const [error, setError] = useState("");
 
   const handleStart = async () => {
-    if (!name.trim() || !district || !ageGroup) {
-      setError(t("enterNameDistrictAge"));
+    if (!name.trim() || !district || !ageGroup || !gender) {
+      setError(t("enterNameDistrictAgeGender"));
       return;
     }
     setError("");
@@ -71,7 +72,7 @@ export default function TakeQuizPage() {
         optionId: answers[q.id],
       }));
 
-      const result = await submitQuizAttempt(name, district, ageGroup, answerArray);
+      const result = await submitQuizAttempt(name, district, ageGroup, gender, answerArray);
       router.push(`/quiz/results/${result.id}`);
     } catch (err) {
       setError(
@@ -144,6 +145,26 @@ export default function TakeQuizPage() {
                   {AGE_GROUPS.map((age) => (
                     <option key={age} value={age}>
                       {age}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label className="block font-display font-bold text-lg mb-2 text-gray-800">
+                {t("gender")}
+              </label>
+              <div className="relative">
+                <select
+                  value={gender}
+                  onChange={(e) => setGender(e.target.value)}
+                  className="select-retro w-full pl-4 pr-12 py-3.5 border-2 border-black rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary bg-white cursor-pointer font-medium text-gray-900 hover:bg-gray-50 transition-colors"
+                >
+                  <option value="">{t("selectGender")}</option>
+                  {GENDERS.map((g) => (
+                    <option key={g} value={g}>
+                      {t(GENDER_LABEL_KEYS[g])}
                     </option>
                   ))}
                 </select>
