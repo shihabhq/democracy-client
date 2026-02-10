@@ -32,33 +32,19 @@ export default function QuizResultsPage() {
     fetchResults();
   }, [attemptId]);
 
-  const handleDownloadCertificate = async () => {
-    setDownloadError(null);
-    setDownloading(true);
-    try {
-      const url = getCertificateUrl(attemptId);
-      const res = await fetch(url);
-      if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
-        const message = data?.error || data?.details || res.statusText;
-        setDownloadError(message);
-        return;
-      }
-      const blob = await res.blob();
-      const blobUrl = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = blobUrl;
-      a.download = "certificate.pdf";
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(blobUrl);
-    } catch (err) {
-      setDownloadError(err instanceof Error ? err.message : "Download failed");
-    } finally {
-      setDownloading(false);
-    }
-  };
+const handleDownloadCertificate = async () => {
+  setDownloadError(null);
+  setDownloading(true);
+
+  const url = await getCertificateUrl(attemptId);
+
+  // Open in a new tab
+  window.open(url, "_blank", "noopener,noreferrer");
+
+  // Optional UX cleanup
+  setTimeout(() => setDownloading(false), 1000);
+};
+
 
   if (loading) {
     return (
@@ -97,9 +83,9 @@ export default function QuizResultsPage() {
           </h1>
           <p className="text-lg text-gray-600">
             {results.name} · {results.district} · {results.ageGroup}
-              {results.gender
-                ? ` · ${GENDER_LABEL_KEYS[results.gender as Gender] ? t(GENDER_LABEL_KEYS[results.gender as Gender]) : results.gender}`
-                : ""}
+            {results.gender
+              ? ` · ${GENDER_LABEL_KEYS[results.gender as Gender] ? t(GENDER_LABEL_KEYS[results.gender as Gender]) : results.gender}`
+              : ""}
           </p>
         </div>
 
@@ -130,7 +116,9 @@ export default function QuizResultsPage() {
             disabled={downloading}
             className="w-full px-6 py-4 bg-accent text-white font-display font-bold text-lg rounded-xl border-2 border-black shadow-retro hover:shadow-retro-hover hover:translate-x-1 hover:translate-y-1 active:shadow-retro-hover active:translate-x-1 active:translate-y-1 transition-all disabled:opacity-70 disabled:cursor-not-allowed"
           >
-            {downloading ? t("downloadingCertificate") : t("downloadCertificate")}
+            {downloading
+              ? t("downloadingCertificate")
+              : t("downloadCertificate")}
           </button>
         ) : (
           <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-4">
@@ -197,7 +185,6 @@ export default function QuizResultsPage() {
                 </div>
               )}
             </div>
-
 
             {result.question.explanation?.trim() && (
               <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-4">
