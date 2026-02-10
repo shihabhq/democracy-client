@@ -4,7 +4,12 @@ import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { getQuizQuestions, submitQuizAttempt, Question } from "@/lib/api";
-import { BANGLADESH_DISTRICTS, AGE_GROUPS, GENDERS, GENDER_LABEL_KEYS } from "@/lib/constants";
+import {
+  BANGLADESH_DISTRICTS,
+  AGE_GROUPS,
+  GENDERS,
+  GENDER_LABEL_KEYS,
+} from "@/lib/constants";
 import { DISTRICTS_BN } from "@/lib/districts-bn";
 
 type Step = "info" | "quiz" | "submitting";
@@ -24,8 +29,10 @@ export default function TakeQuizPage() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<{ [key: string]: string }>({});
   const [error, setError] = useState("");
+  const [starting, setStarting] = useState(false);
 
   const handleStart = async () => {
+    setStarting(true);
     if (!name.trim() || !district || !ageGroup || !gender) {
       setError(t("enterNameDistrictAgeGender"));
       return;
@@ -37,6 +44,8 @@ export default function TakeQuizPage() {
       setStep("quiz");
     } catch {
       setError(t("failedToLoadQuestions"));
+    } finally {
+      setStarting(false);
     }
   };
 
@@ -72,14 +81,16 @@ export default function TakeQuizPage() {
         optionId: answers[q.id],
       }));
 
-      const result = await submitQuizAttempt(name, district, ageGroup, gender, answerArray);
+      const result = await submitQuizAttempt(
+        name,
+        district,
+        ageGroup,
+        gender,
+        answerArray,
+      );
       router.push(`/quiz/results/${result.id}`);
     } catch (err) {
-      setError(
-        err instanceof Error
-          ? err.message
-          : t("failedToSubmitQuiz")
-      );
+      setError(err instanceof Error ? err.message : t("failedToSubmitQuiz"));
       setStep("quiz");
     }
   };
@@ -180,9 +191,10 @@ export default function TakeQuizPage() {
 
           <button
             onClick={handleStart}
-            className="w-full px-6 py-4 bg-accent text-white font-display font-bold text-lg rounded-xl border-2 border-black shadow-retro hover:shadow-retro-hover hover:translate-x-1 hover:translate-y-1 active:shadow-retro-hover active:translate-x-1 active:translate-y-1 transition-all"
+            disabled={starting}
+            className="w-full px-6 py-4 bg-accent text-white font-display font-bold text-lg rounded-xl border-2 border-black shadow-retro hover:shadow-retro-hover hover:translate-x-1 hover:translate-y-1 active:shadow-retro-hover active:translate-x-1 active:translate-y-1 transition-all disabled:opacity-70 disabled:cursor-not-allowed"
           >
-            {t("start")}
+            {starting ? t("starting") : t("start")}
           </button>
         </div>
       </div>
@@ -212,7 +224,7 @@ export default function TakeQuizPage() {
             </span>
             <span className="text-sm text-gray-600">
               {Math.round(
-                ((currentQuestionIndex + 1) / questions.length) * 100
+                ((currentQuestionIndex + 1) / questions.length) * 100,
               )}
               %
             </span>

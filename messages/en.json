@@ -36,6 +36,7 @@
     "title": "Check your democracy score",
     "description": "Answer 20 questions to test your knowledge about democracy and voting.",
     "start": "Start Quiz",
+    "starting": "Starting the quiz...",
     "name": "Name",
     "district": "District",
     "enterName": "Enter your name",
