@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { Fredoka, Nunito, Noto_Sans_Bengali } from "next/font/google";
 import Footer from "@/components/Footer";
+import Script from "next/script";
 
 // Default body font
 const nunito = Nunito({
@@ -97,16 +98,30 @@ export default async function RootLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  if (!hasLocale(routing.locales, locale)) {
-    notFound();
-  }
+  if (!hasLocale(routing.locales, locale)) notFound();
 
   const localeFont = locale === "bn" ? notoSansBengali : fredoka;
   const fontClasses = `${nunito.variable} ${localeFont.variable}`;
 
   return (
     <html lang={locale} className={fontClasses}>
-      <body className=" text-gray-900 min-h-screen relative overflow-x-hidden selection:text-white selection:bg-primary">
+      <head>
+        {/* Google Analytics */}
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-QQT3T1S82V"
+          strategy="afterInteractive"
+        />
+        <Script id="ga-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-QQT3T1S82V');
+          `}
+        </Script>
+      </head>
+      <body className="text-gray-900 min-h-screen relative overflow-x-hidden selection:text-white selection:bg-primary">
         {/* Background grid */}
         <div className="fixed inset-0 pointer-events-none z-0 opacity-40" />
         <NextIntlClientProvider>
