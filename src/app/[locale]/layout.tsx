@@ -105,7 +105,7 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} className={fontClasses}>
-      <head>
+      <body className="text-gray-900 min-h-screen relative overflow-x-hidden selection:text-white selection:bg-primary">
         {/* Google Analytics */}
         <Script
           async
@@ -120,8 +120,7 @@ export default async function RootLayout({
             gtag('config', 'G-QQT3T1S82V');
           `}
         </Script>
-      </head>
-      <body className="text-gray-900 min-h-screen relative overflow-x-hidden selection:text-white selection:bg-primary">
+
         {/* Background grid */}
         <div className="fixed inset-0 pointer-events-none z-0 opacity-40" />
         <NextIntlClientProvider>
