@@ -21,9 +21,6 @@ export default function AboutPage() {
       {/* Mission */}
       <section className="mb-10 sm:mb-14">
         <div className="bg-white border-2 border-black rounded-2xl shadow-retro p-6 sm:p-8">
-          <h2 className="font-display font-bold text-2xl sm:text-3xl text-primary mb-4">
-            {t("missionTitle")}
-          </h2>
           <p className="text-gray-700 text-base sm:text-lg leading-relaxed">
             {t("mission")}
           </p>
@@ -41,7 +38,7 @@ export default function AboutPage() {
               1
             </span>
             <p className="text-gray-700 text-base sm:text-lg pt-1">
-              {t("whatWeDo1")}
+              {t("purpose1")}
             </p>
           </div>
           <div className="bg-white border-2 border-black rounded-2xl shadow-retro p-5 sm:p-6 flex items-start gap-4">
@@ -49,7 +46,7 @@ export default function AboutPage() {
               2
             </span>
             <p className="text-gray-700 text-base sm:text-lg pt-1">
-              {t("whatWeDo2")}
+              {t("purpose2")}
             </p>
           </div>
           <div className="bg-white border-2 border-black rounded-2xl shadow-retro p-5 sm:p-6 flex items-start gap-4">
@@ -57,7 +54,15 @@ export default function AboutPage() {
               3
             </span>
             <p className="text-gray-700 text-base sm:text-lg pt-1">
-              {t("whatWeDo3")}
+              {t("purpose3")}
+            </p>
+          </div>
+          <div className="bg-white border-2 border-black rounded-2xl shadow-retro p-5 sm:p-6 flex items-start gap-4">
+            <span className="shrink-0 w-10 h-10 rounded-xl bg-primary text-white font-display font-bold flex items-center justify-center text-lg">
+              4
+            </span>
+            <p className="text-gray-700 text-base sm:text-lg pt-1">
+              {t("purpose4")}
             </p>
           </div>
         </div>
@@ -82,6 +87,11 @@ export default function AboutPage() {
           <div className="bg-paper-pink border-2 border-black rounded-2xl shadow-retro p-5 sm:p-6">
             <p className="font-display font-bold text-lg text-gray-900">
               {t("values3")}
+            </p>
+          </div>
+          <div className=" border-2 border-black rounded-2xl shadow-retro p-5 sm:p-6">
+            <p className="font-display font-bold text-lg text-gray-900">
+              {t("values4")}
             </p>
           </div>
         </div>

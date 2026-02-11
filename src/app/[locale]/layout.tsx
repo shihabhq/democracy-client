@@ -1,6 +1,6 @@
 import Navbar from "@/components/Navbar";
 import "../../styles/globals.css";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
@@ -28,13 +28,15 @@ const notoSansBengali = Noto_Sans_Bengali({
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://votekori.cloud";
+
+export const viewport: Viewport = {
+  themeColor: "#0d9488",
+  width: "device-width",
+  initialScale: 1,
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  icons: {
-    icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
-    apple: "/favicon.svg",
-  },
   title: {
     default: "Vote Kori – Learn Democracy & Vote Smart",
     template: "%s | Vote Kori",
@@ -51,6 +53,13 @@ export const metadata: Metadata = {
     "certificate",
   ],
   authors: [{ name: "Vote Kori" }],
+  creator: "Vote Kori",
+  publisher: "Vote Kori",
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
   openGraph: {
     type: "website",
     locale: "en_GB",
@@ -59,7 +68,7 @@ export const metadata: Metadata = {
     title: "Vote Kori – Learn Democracy & Vote Smart",
     description:
       "Take a short democracy quiz, earn a certificate, and vote smart. Your voice matters in building a better Bangladesh.",
-    url: "/",
+    url: siteUrl,
   },
   twitter: {
     card: "summary_large_image",
@@ -70,6 +79,13 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
+  alternates: {
+    canonical: siteUrl,
   },
 };
 
