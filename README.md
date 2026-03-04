@@ -105,11 +105,9 @@ democracy-client/
 
 ## Screenshots
 
-You can showcase the UI by placing screenshots under `public/readme` and referencing them here. For example:
-
 ```md
-![Home screen](public/readme/home.png)
-![Quiz flow](public/readme/quiz.png)
-![Result & certificate](public/readme/result-certificate.png)
-![Mobile layout](public/readme/mobile.png)
+![Home screen](public/readme/homepage.webp)
+![Quiz flow](public/readme/quiz.webp)
+![Result & certificate](public/readme/certificate.webp)
+![Mobile layout](public/readme/quiz-take.webp)
 ```
