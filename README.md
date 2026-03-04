@@ -102,12 +102,3 @@ democracy-client/
 
 - **Keeping the UI responsive and lightweight**  
   With Tailwind CSS v4 and careful layout choices, I made sure the quiz and result pages work well on low-end devices and small screens, prioritizing clarity over heavy visuals.
-
-## Screenshots
-
-```md
-![Home screen](public/readme/homepage.webp)
-![Quiz flow](public/readme/quiz.webp)
-![Result & certificate](public/readme/certificate.webp)
-![Mobile layout](public/readme/quiz-take.webp)
-```
